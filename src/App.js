@@ -21,17 +21,24 @@ class App extends Component {
         this.state = {
             firstname:"",
             lastname:"",
-            age:""
+            age:"",
+            gender:"",
+            destination:"",
+            dietaryrest:""
+
         }
         this.handleChange=this.handleChange.bind(this)
     }
 
     handleChange(event){
-        const {name,value} = event.target
+        const {name,value,type,checked} = event.target
 
         this.setState({[name]:value})
 
-        
+        type==="checkbox"? console.log("it is checked"):console.log("it is not checked")
+
+        console.log(checked)
+
     }
     
     render() {
@@ -44,29 +51,30 @@ class App extends Component {
                     
                     {/* Create radio buttons for gender here */}
                     <label>
-                    <input type="radio" value="male"/>
+                    <input type="radio" name="gender" value="male" onChange={this.handleChange}/>
                     Male
                     </label>
                     <br />
                     <label>
-                    <input type="radio" value="female"/>
+                    <input type="radio" name="gender" value="female" onChange={this.handleChange}/>
                     Female
                     </label>
                     
                     {/* Create select box for location here */}
                     <br/>
                     <label>Destination </label>
-                    <select>
-                      <option value="dallas">Dallas</option>
-                      <option value="hyderabad">Hyderabad</option>
-                      <option value="pune">Pune</option>
+                    <select name="destination" 
+                    onChange={this.handleChange}>
+                      <option value="Dallas">Dallas</option>
+                      <option value="Hyderabad">Hyderabad</option>
+                      <option value="Pune">Pune</option>
                     </select>
                     <br />
                     
                     {/* Create check boxes for dietary restrictions here */}
-                    <label>Dietary restrictions? 
-                    <input type="checkbox" name="dietery"/>
-                      </label>                    
+                    <label>Dietary restrictions? </label>   
+                    <input type="checkbox" name="dietery" onChange={this.handleChange}/>
+                 
                     <br />
                     <br />
                     <button>Submit</button>
@@ -75,8 +83,8 @@ class App extends Component {
                 <h2>Entered information:</h2>
                 <p>Your name: {this.state.firstname} {this.state.lastname}</p>
                 <p>Your age: {this.state.age}</p>
-                <p>Your gender: {/* Gender here */}</p>
-                <p>Your destination: {/* Destination here */}</p>
+                <p>Your gender: {this.state.gender}</p>
+                <p>Your destination: {this.state.destination}</p>
                 <p>
                     Your dietary restrictions: 
                     {/* Dietary restrictions here, comma separated */}
