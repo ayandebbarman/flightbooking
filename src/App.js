@@ -24,7 +24,7 @@ class App extends Component {
             age:"",
             gender:"",
             destination:"",
-            dietaryrest:""
+            isdietery:""
 
         }
         this.handleChange=this.handleChange.bind(this)
@@ -33,9 +33,9 @@ class App extends Component {
     handleChange(event){
         const {name,value,type,checked} = event.target
 
-        this.setState({[name]:value})
+    
 
-        type==="checkbox"? console.log("it is checked"):console.log("it is not checked")
+        type==="checkbox"? checked?this.setState({[name]:"Yes"}):this.setState({[name]:"No"}): this.setState({[name]:value})
 
         console.log(checked)
 
@@ -73,7 +73,7 @@ class App extends Component {
                     
                     {/* Create check boxes for dietary restrictions here */}
                     <label>Dietary restrictions? </label>   
-                    <input type="checkbox" name="dietery" onChange={this.handleChange}/>
+                    <input type="checkbox" name="isdietery" onChange={this.handleChange}/>
                  
                     <br />
                     <br />
@@ -87,7 +87,7 @@ class App extends Component {
                 <p>Your destination: {this.state.destination}</p>
                 <p>
                     Your dietary restrictions: 
-                    {/* Dietary restrictions here, comma separated */}
+                    {this.state.isdietery}
                 </p>
             </main>
         )
